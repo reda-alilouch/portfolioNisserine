@@ -8,6 +8,7 @@ import {
   TypographyLead,
   TypographyP,
 } from "@/components/ui/typography";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -36,12 +37,12 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <div className="pt-24 pb-20 bg-white dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
           <TypographyH1 className="mb-6">Témoignages</TypographyH1>
           <TypographyLead className="max-w-2xl mx-auto">
@@ -49,14 +50,14 @@ export default function Testimonials() {
           </TypographyLead>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow relative border border-gray-200 dark:border-gray-700"
+              className="relative p-8 transition-shadow bg-white border border-gray-200 shadow-lg dark:bg-gray-800 rounded-2xl hover:shadow-xl dark:border-gray-700"
             >
               <Quote
                 className="absolute top-6 right-6 text-primary/20"
@@ -64,16 +65,16 @@ export default function Testimonials() {
               />
 
               <div className="flex items-center mb-6">
-                <img
+                <Image
                   src={testimonial.image || "/placeholder.svg"}
                   alt={testimonial.name}
-                  className="w-16 h-16 rounded-full object-cover mr-4"
+                  className="object-cover w-16 h-16 mr-4 rounded-full"
                 />
                 <div>
                   <h3 className="font-semibold text-black dark:text-white">
                     {testimonial.name}
                   </h3>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">
+                  <p className="text-sm text-gray-700 dark:text-gray-300">
                     {testimonial.role}
                   </p>
                 </div>
@@ -89,7 +90,7 @@ export default function Testimonials() {
                 ))}
               </div>
 
-              <TypographyP>"{testimonial.text}"</TypographyP>
+              <TypographyP>&quot;{testimonial.text}&quot;</TypographyP>
             </motion.div>
           ))}
         </div>
@@ -98,18 +99,18 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-16"
+          className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-primary to-primary-light rounded-2xl p-8 text-white">
+          <div className="p-8 text-white bg-gradient-to-r from-primary to-primary-light rounded-2xl">
             <TypographyH2 className="mb-4 text-white">
               Prêt à travailler ensemble ?
             </TypographyH2>
-            <TypographyLead className="mb-6 opacity-90 text-white">
+            <TypographyLead className="mb-6 text-white opacity-90">
               Rejoignez mes clients satisfaits et donnons vie à votre projet !
             </TypographyLead>
             <a
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-white text-primary font-semibold rounded-full hover:bg-gray-100 transition-colors"
+              className="inline-flex items-center px-8 py-4 font-semibold transition-colors bg-white rounded-full text-primary hover:bg-gray-100"
             >
               Commencer un projet
             </a>

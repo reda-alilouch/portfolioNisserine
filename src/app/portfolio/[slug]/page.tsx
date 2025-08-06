@@ -4,9 +4,24 @@ import { motion } from "framer-motion"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink } from "lucide-react"
 import { TypographyH1, TypographyH2, TypographyP } from "@/components/ui/typography"
+import { use } from "react"
+import Image from "next/image"
+
+// Define proper TypeScript interface
+interface Project {
+  title: string
+  category: string
+  client: string
+  year: string
+  tools: string[]
+  description: string
+  challenge: string
+  solution: string
+  images: string[]
+}
 
 // Mock data - en production, ceci viendrait d'une API ou CMS
-const projectData: { [key: string]: any } = {
+const projectData: Record<string, Project> = {
   "identite-restaurant": {
     title: "Identité visuelle - Restaurant Le Jardin",
     category: "Identité visuelle",
@@ -29,19 +44,21 @@ const projectData: { [key: string]: any } = {
 }
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }
 
 export default function ProjectDetail({ params }: PageProps) {
-  const project = projectData[params.slug]
+  // Use React's `use` hook to unwrap the Promise
+  const { slug } = use(params)
+  const project = projectData[slug]
 
   if (!project) {
     return (
       <div className="pt-24 pb-20 text-center bg-white dark:bg-gray-900">
         <TypographyH2>Projet non trouvé</TypographyH2>
-        <Link href="/portfolio" className="text-primary hover:underline mt-4 inline-block">
+        <Link href="/portfolio" className="inline-block mt-4 text-primary hover:underline">
           Retour au portfolio
         </Link>
       </div>
@@ -50,38 +67,38 @@ export default function ProjectDetail({ params }: PageProps) {
 
   return (
     <div className="pt-24 pb-20 bg-white dark:bg-gray-900">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl px-4 mx-auto sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
           <Link
             href="/portfolio"
-            className="inline-flex items-center text-primary hover:text-primary-dark transition-colors mb-8"
+            className="inline-flex items-center mb-8 transition-colors text-primary hover:text-primary-dark"
           >
             <ArrowLeft className="mr-2" size={20} />
             Retour au portfolio
           </Link>
 
           <div className="mb-8">
-            <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">{project.category}</span>
+            <span className="px-4 py-2 text-sm font-medium text-white rounded-full bg-primary">{project.category}</span>
           </div>
 
           <TypographyH1 className="mb-6">{project.title}</TypographyH1>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          <div className="grid grid-cols-1 gap-8 mb-12 md:grid-cols-3">
             <div>
-              <h3 className="font-semibold text-black dark:text-white mb-2">Client</h3>
+              <h3 className="mb-2 font-semibold text-black dark:text-white">Client</h3>
               <TypographyP>{project.client}</TypographyP>
             </div>
             <div>
-              <h3 className="font-semibold text-black dark:text-white mb-2">Année</h3>
+              <h3 className="mb-2 font-semibold text-black dark:text-white">Année</h3>
               <TypographyP>{project.year}</TypographyP>
             </div>
             <div>
-              <h3 className="font-semibold text-black dark:text-white mb-2">Outils</h3>
+              <h3 className="mb-2 font-semibold text-black dark:text-white">Outils</h3>
               <TypographyP>{project.tools.join(", ")}</TypographyP>
             </div>
           </div>
 
-          <div className="prose prose-lg max-w-none mb-12">
+          <div className="mb-12 prose prose-lg max-w-none">
             <TypographyH2 className="mb-4">Description</TypographyH2>
             <TypographyP className="mb-6">{project.description}</TypographyP>
 
@@ -92,28 +109,30 @@ export default function ProjectDetail({ params }: PageProps) {
             <TypographyP className="mb-8">{project.solution}</TypographyP>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
             {project.images.map((image: string, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 dark:border-gray-700"
+                className="overflow-hidden border border-gray-200 shadow-lg rounded-2xl dark:border-gray-700"
               >
-                <img
+                <Image
                   src={image || "/placeholder.svg"}
                   alt={`${project.title} - Image ${index + 1}`}
-                  className="w-full h-64 object-cover"
+                  width={800}
+                  height={600}
+                  className="object-cover w-full h-64"
                 />
               </motion.div>
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="mt-12 text-center">
             <Link
               href="/contact"
-              className="inline-flex items-center px-8 py-4 bg-primary text-white font-semibold rounded-full hover:bg-primary-dark transition-colors"
+              className="inline-flex items-center px-8 py-4 font-semibold text-white transition-colors rounded-full bg-primary hover:bg-primary-dark"
             >
               Discutons de votre projet
               <ExternalLink className="ml-2" size={20} />

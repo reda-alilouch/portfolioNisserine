@@ -40,16 +40,16 @@ const ContactForm = () => {
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-2xl p-8 text-center"
+        className="p-8 text-center border border-green-200 bg-green-50 dark:bg-green-900/20 dark:border-green-800 rounded-2xl"
       >
-        <CheckCircle className="text-green-500 mx-auto mb-4" size={48} />
-        <h3 className="text-2xl font-bold text-green-800 dark:text-green-400 mb-2">Message envoyé !</h3>
+        <CheckCircle className="mx-auto mb-4 text-green-500" size={48} />
+        <h3 className="mb-2 text-2xl font-bold text-green-800 dark:text-green-400">Message envoyé !</h3>
         <p className="text-green-600 dark:text-green-300">
           Merci pour votre message. Je vous répondrai dans les plus brefs délais.
         </p>
         <button
           onClick={() => setIsSubmitted(false)}
-          className="mt-4 text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 font-medium"
+          className="mt-4 font-medium text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200"
         >
           Envoyer un autre message
         </button>
@@ -59,9 +59,9 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         <div>
-          <label htmlFor="name" className="block text-sm font-medium text-black dark:text-white mb-2">
+          <label htmlFor="name" className="block mb-2 text-sm font-medium text-black dark:text-white">
             Nom complet *
           </label>
           <input
@@ -71,13 +71,13 @@ const ContactForm = () => {
             required
             value={formData.name}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-black dark:text-white"
+            className="w-full px-4 py-3 text-black transition-colors bg-white border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
             placeholder="Votre nom"
           />
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-black dark:text-white mb-2">
+          <label htmlFor="email" className="block mb-2 text-sm font-medium text-black dark:text-white">
             Email *
           </label>
           <input
@@ -87,14 +87,14 @@ const ContactForm = () => {
             required
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-black dark:text-white"
+            className="w-full px-4 py-3 text-black transition-colors bg-white border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
             placeholder="votre@email.com"
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-black dark:text-white mb-2">
+        <label htmlFor="subject" className="block mb-2 text-sm font-medium text-black dark:text-white">
           Type de projet *
         </label>
         <select
@@ -103,18 +103,18 @@ const ContactForm = () => {
           required
           value={formData.subject}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors bg-white dark:bg-gray-800 text-black dark:text-white"
+          className="w-full px-4 py-3 text-black transition-colors bg-white border border-gray-300 rounded-lg dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
         >
           <option value="">Sélectionnez un type de projet</option>
           <option value="identite-visuelle">Identité visuelle</option>
-          <option value="affiche">Création d'affiche</option>
+          <option value="affiche">Création d&apos;affiche</option>
           <option value="reseaux-sociaux">Visuels réseaux sociaux</option>
           <option value="autre">Autre projet</option>
         </select>
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-sm font-medium text-black dark:text-white mb-2">
+        <label htmlFor="message" className="block mb-2 text-sm font-medium text-black dark:text-white">
           Message *
         </label>
         <textarea
@@ -124,7 +124,7 @@ const ContactForm = () => {
           rows={6}
           value={formData.message}
           onChange={handleChange}
-          className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none bg-white dark:bg-gray-800 text-black dark:text-white"
+          className="w-full px-4 py-3 text-black transition-colors bg-white border border-gray-300 rounded-lg resize-none dark:border-gray-600 focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-800 dark:text-white"
           placeholder="Décrivez votre projet, vos besoins, votre budget approximatif..."
         />
       </div>
@@ -132,10 +132,10 @@ const ContactForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary text-white font-semibold py-4 px-6 rounded-lg hover:bg-primary-dark transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+        className="flex items-center justify-center w-full px-6 py-4 font-semibold text-white transition-colors rounded-lg bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? (
-          <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white" />
+          <div className="w-5 h-5 border-b-2 border-white rounded-full animate-spin" />
         ) : (
           <>
             <Send className="mr-2" size={20} />

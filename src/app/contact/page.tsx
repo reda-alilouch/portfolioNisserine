@@ -14,12 +14,12 @@ import {
 export default function Contact() {
   return (
     <div className="pt-24 pb-20 bg-white dark:bg-gray-900">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl px-4 mx-auto sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-16 text-center"
         >
           <TypographyH1 className="mb-6">Contactez-moi</TypographyH1>
           <TypographyLead className="max-w-2xl mx-auto">
@@ -28,7 +28,7 @@ export default function Contact() {
           </TypographyLead>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
@@ -51,7 +51,7 @@ export default function Contact() {
 
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary">
                     <Mail className="text-white" size={20} />
                   </div>
                   <div>
@@ -61,7 +61,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary">
                     <Phone className="text-white" size={20} />
                   </div>
                   <div>
@@ -71,7 +71,7 @@ export default function Contact() {
                 </div>
 
                 <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary rounded-full flex items-center justify-center">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary">
                     <MapPin className="text-white" size={20} />
                   </div>
                   <div>
@@ -89,24 +89,24 @@ export default function Contact() {
               <div className="flex space-x-4">
                 <a
                   href="#"
-                  className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                  className="flex items-center justify-center w-12 h-12 text-white transition-colors rounded-full bg-primary hover:bg-primary-dark"
                 >
                   <Instagram size={20} />
                 </a>
                 <a
                   href="#"
-                  className="w-12 h-12 bg-primary rounded-full flex items-center justify-center text-white hover:bg-primary-dark transition-colors"
+                  className="flex items-center justify-center w-12 h-12 text-white transition-colors rounded-full bg-primary hover:bg-primary-dark"
                 >
                   <Linkedin size={20} />
                 </a>
               </div>
             </div>
 
-            <div className="bg-beige dark:bg-gray-800 rounded-2xl p-6 border border-gray-200 dark:border-gray-700">
+            <div className="p-6 border border-gray-200 bg-beige dark:bg-gray-800 rounded-2xl dark:border-gray-700">
               <TypographyH3 className="mb-4">Temps de réponse</TypographyH3>
               <TypographyP className="mb-4">
                 Je réponds généralement dans les 24h. Pour les projets urgents,
-                n'hésitez pas à me contacter directement par téléphone.
+                n&apos;hésitez pas à me contacter directement par téléphone.
               </TypographyP>
               <div className="text-sm text-gray-500 dark:text-gray-400">
                 <p>Lun - Ven : 9h - 18h</p>
